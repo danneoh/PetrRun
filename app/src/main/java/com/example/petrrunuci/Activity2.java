@@ -18,4 +18,4 @@ public class Activity2 extends AppCompatActivity {
         //Constants.petrSprite = BitmapFactory.decodeResource(getResources(), R.drawable.bitpetr);
 
     }//onCreate
-}
+}//Hello
