@@ -1,0 +1,8 @@
+package com.example.petrrunuci;
+
+public class Pole extends Obstacles {
+
+    public Pole(int posX, int posY){
+        super(posX, posY, (Constants.SCREEN_WIDTH/25), (Constants.SCREEN_HEIGHT/5), 0);
+    }
+}
