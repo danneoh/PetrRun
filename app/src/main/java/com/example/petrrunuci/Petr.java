@@ -17,9 +17,8 @@ public class Petr extends Entity{
 
     //Constructor
     public Petr(int posX, int posY){
-        super(posX, posY, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        super(posX, posY, Constants.SCREEN_WIDTH/9, Constants.SCREEN_HEIGHT/3);
         faceRight(true);
-        setLives(2);
         setPoints(0);
         setRelPos(posX + (Constants.SCREEN_WIDTH/20)/2);
         //setJumpHeight();
