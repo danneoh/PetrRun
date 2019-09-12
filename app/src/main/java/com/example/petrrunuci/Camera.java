@@ -6,7 +6,6 @@ import android.util.AttributeSet;
 import android.view.View;
 
 public class Camera extends View{
-    private Petr petr;
     static World world;
     Activity2 active;
     Context context;
