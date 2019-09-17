@@ -5,7 +5,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 
 public class Constants {
-    public static final int FPS = 30;
     public static final int SCREEN_HEIGHT = Resources.getSystem().getDisplayMetrics().widthPixels;
     public static final int SCREEN_WIDTH = Resources.getSystem().getDisplayMetrics().heightPixels;
 

@@ -9,6 +9,8 @@ public class Camera extends View{
     static World world;
     Activity2 active;
     Context context;
+    private final long FPS = 30; //Frames Per Second
+    private long timeStamp;
     //Thread camView;
 
     public Camera(Context context, AttributeSet attributeSet){
@@ -20,11 +22,18 @@ public class Camera extends View{
 
         //camView = new Thread(game);
         //camView.start();
-    }
+    }//end Constructor Camera
 
     @Override
     protected void onDraw(Canvas cam){
         //petr.getCurrentAnimation().draw(cam, petr.getRect());
         world.draw(cam);
-    }
-}
+        timeStamp = System.currentTimeMillis();
+        try{
+            Thread.sleep(1000/FPS);
+        }catch(Exception e){
+            System.out.println("Error: Thread Camera/onDraw Interrupted.");
+        }//end try/catch
+        invalidate();
+    }//end onDraw
+}//end class Camera

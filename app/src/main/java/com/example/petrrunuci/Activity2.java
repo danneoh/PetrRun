@@ -18,7 +18,7 @@ public class Activity2 extends AppCompatActivity {
         Constants.CURRENT_CONTEXT = this;
 
         //Constants.petrSprite = BitmapFactory.decodeResource(getResources(), R.drawable.bitpetr);
-        Constants.petrSprite = BitmapFactory.decodeResource(getResources(), R.drawable.bitpeter);
+        //Constants.petrSprite = BitmapFactory.decodeResource(getResources(), R.drawable.bitpeter);
 
     }//onCreate
 }//Hello
