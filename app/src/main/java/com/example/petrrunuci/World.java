@@ -9,12 +9,16 @@ import static com.example.petrrunuci.Constants.SCREEN_HEIGHT;
 import static com.example.petrrunuci.Constants.SCREEN_WIDTH;
 
 public class World {
+    private boolean endGame;
+
     private Petr petr;
     private Pole pole;
     private Bush bush;
     private BikeRack br;
 
     public World(){
+        setEndGame(false);
+
         petr = new Petr((SCREEN_WIDTH/9), (SCREEN_HEIGHT/4)*2);
 
         pole = new Pole((SCREEN_WIDTH/15),((SCREEN_HEIGHT/4)*2) + (Constants.SCREEN_HEIGHT/3) - (Constants.SCREEN_HEIGHT/5));
@@ -22,7 +26,19 @@ public class World {
         bush = new Bush((SCREEN_WIDTH/5), ((SCREEN_HEIGHT/4)*2) + (Constants.SCREEN_HEIGHT/3) - (Constants.SCREEN_HEIGHT/7));
 
         br = new BikeRack((SCREEN_WIDTH/7), ((SCREEN_HEIGHT/4)*2) + (Constants.SCREEN_HEIGHT/3) - (Constants.SCREEN_HEIGHT/10));
-    }
+    }//Constructor World
+
+    public void setEndGame(boolean endGame){
+        this.endGame = endGame;
+    }//setEndGame
+
+    public boolean isEndGame(){
+        return endGame;
+    }//isEndGame
+
+    public Petr getPetr(){
+        return petr;
+    }//getPetr
 
     public void draw(Canvas cam){
         Paint p = new Paint();
@@ -50,6 +66,8 @@ public class World {
         cam.drawRect(bush.getRect(), bushColor);
         cam.drawRect(br.getRect(), bikeColor);
        // cam.drawBitmap(petrSprite, null, petr.getRect(), new Paint());
-    }
+    }//draw
 
-}
+}//class World
+
+/* EOF */

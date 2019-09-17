@@ -178,7 +178,7 @@ public abstract class Entity { //This class will be used to make Petr
 
         moveRelPos(x);
 
-        setRect(posX, posY, getWidth(), getHeight());
+        getRect().offset(x, y);
     }
 
 }// class Entity
