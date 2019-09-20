@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
+import java.util.Vector;
+
 import static com.example.petrrunuci.Constants.SCREEN_HEIGHT;
 import static com.example.petrrunuci.Constants.SCREEN_WIDTH;
 
@@ -12,6 +14,7 @@ public class World {
     private boolean endGame;
 
     private Petr petr;
+    private Vector<Obstacles> obstacles = new Vector<Obstacles>(10);
     private Pole pole;
     private Bush bush;
     private BikeRack br;
@@ -40,6 +43,10 @@ public class World {
         return petr;
     }//getPetr
 
+    public Vector<Obstacles> getObstacles(){
+        return obstacles;
+    }//getObstacles
+
     public void draw(Canvas cam){
         Paint p = new Paint();
         Paint poleColor = new Paint();
@@ -62,9 +69,23 @@ public class World {
         bikeColor.setColor(color4);
 
         cam.drawRect(petr.getRect(), p);
+
+        for(int c = 0; c < 10; c++){
+            if(getObstacles().get(c) != null) {
+                if (getObstacles().get(c) instanceof BikeRack) {
+                    cam.drawRect(getObstacles().get(c).getRect(), bikeColor);
+                } else if (getObstacles().get(c) instanceof Bush) {
+                    cam.drawRect(getObstacles().get(c).getRect(), bushColor);
+                } else if (getObstacles().get(c) instanceof Pole) {
+                    cam.drawRect(getObstacles().get(c).getRect(), poleColor);
+                }// if/elif/elif
+            }//if
+        }//for
+
+       /*
         cam.drawRect(pole.getRect(), poleColor);
         cam.drawRect(bush.getRect(), bushColor);
-        cam.drawRect(br.getRect(), bikeColor);
+        cam.drawRect(br.getRect(), bikeColor); /**/
        // cam.drawBitmap(petrSprite, null, petr.getRect(), new Paint());
     }//draw
 
