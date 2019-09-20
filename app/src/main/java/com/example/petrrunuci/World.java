@@ -52,23 +52,28 @@ public class World {
         Paint poleColor = new Paint();
         Paint bushColor = new Paint();
         Paint bikeColor = new Paint();
+        Paint hitColor = new Paint();
 
         int color;
         int color2;
         int color3;
         int color4;
+        int color5;
 
         color = Color.BLACK;
         color2 = Color.RED;
         color3 = Color.GREEN;
         color4 = Color.BLUE;
+        color5 = Color.CYAN;
 
         p.setColor(color);
         poleColor.setColor(color2);
         bushColor.setColor(color3);
         bikeColor.setColor(color4);
+        hitColor.setColor(color5);
 
         cam.drawRect(petr.getRect(), p);
+        cam.drawRect(petr.getHitBox(), hitColor);
 
         for(int c = 0; c < 10; c++){
             if(getObstacles().get(c) != null) {

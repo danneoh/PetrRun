@@ -5,7 +5,7 @@ import android.graphics.Rect;
 
 public abstract class Entity { //This class will be used to make Petr
     //Entity has a rectangle
-    private Rect rect;
+    private Rect rect, hitBox;
     private int posX, width;
     private int posY, height;
     private int floor;
@@ -31,6 +31,14 @@ public abstract class Entity { //This class will be used to make Petr
 
         setRect(posX, posY, width, height);
     }
+
+    public void setHitBox(int left, int top, int right, int bottom){
+        hitBox = new Rect(left, top, right, bottom);
+    }//setHitBox
+
+    public Rect getHitBox(){
+        return hitBox;
+    }//getHitBox
 
     /* Setter Methods */
     public void setRect(int posX, int posY, int width, int height){
@@ -179,6 +187,9 @@ public abstract class Entity { //This class will be used to make Petr
         moveRelPos(x);
 
         getRect().offset(x, y);
+        if((getHitBox() != null) && !getHitBox().isEmpty()){
+            getHitBox().offset(x, y);
+        }//if
     }
 
 }// class Entity

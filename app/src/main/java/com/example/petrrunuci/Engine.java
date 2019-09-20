@@ -9,8 +9,8 @@ public class Engine extends Thread {
     private World world;
     private Activity2 activity;
 
-    private int gravity = Constants.SCREEN_HEIGHT/100;
-    private int runSpeed = Constants.SCREEN_HEIGHT/500;
+    private int gravity = Constants.SCREEN_HEIGHT/75;
+    private int runSpeed = Constants.SCREEN_HEIGHT/100;
 
     private Random rand;
     private int numObst = 3;
@@ -35,6 +35,9 @@ public class Engine extends Thread {
     }//Initialize
 
     private Obstacles randObstacle(int id){
+        int prevObst;
+
+
         switch(id){
             case 0:
                 return new BikeRack(Constants.SCREEN_WIDTH + rand.nextInt(Constants.SCREEN_WIDTH),((Constants.SCREEN_HEIGHT/4)*2) + (Constants.SCREEN_HEIGHT/3) - (Constants.SCREEN_HEIGHT/10));
