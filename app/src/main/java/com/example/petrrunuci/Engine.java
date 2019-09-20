@@ -35,16 +35,16 @@ public class Engine extends Thread {
     }//Initialize
 
     private Obstacles randObstacle(int id){
-        int prevObst;
+        int placeX = 20 * Constants.SCREEN_WIDTH;
 
 
         switch(id){
             case 0:
-                return new BikeRack(Constants.SCREEN_WIDTH + rand.nextInt(Constants.SCREEN_WIDTH),((Constants.SCREEN_HEIGHT/4)*2) + (Constants.SCREEN_HEIGHT/3) - (Constants.SCREEN_HEIGHT/10));
+                return new BikeRack(Constants.SCREEN_WIDTH + rand.nextInt(placeX),((Constants.SCREEN_HEIGHT/4)*2) + (Constants.SCREEN_HEIGHT/3) - (Constants.SCREEN_HEIGHT/10));
             case 1:
-                return new Bush(Constants.SCREEN_WIDTH + rand.nextInt(Constants.SCREEN_WIDTH),((Constants.SCREEN_HEIGHT/4)*2) + (Constants.SCREEN_HEIGHT/3) - (Constants.SCREEN_HEIGHT/7) );
+                return new Bush(Constants.SCREEN_WIDTH + rand.nextInt(placeX),((Constants.SCREEN_HEIGHT/4)*2) + (Constants.SCREEN_HEIGHT/3) - (Constants.SCREEN_HEIGHT/7) );
             case 2:
-                return new Pole(Constants.SCREEN_WIDTH + rand.nextInt(Constants.SCREEN_WIDTH), ((Constants.SCREEN_HEIGHT/4)*2) + (Constants.SCREEN_HEIGHT/3) - (Constants.SCREEN_HEIGHT/5));
+                return new Pole(Constants.SCREEN_WIDTH + rand.nextInt(placeX), ((Constants.SCREEN_HEIGHT/4)*2) + (Constants.SCREEN_HEIGHT/3) - (Constants.SCREEN_HEIGHT/5));
             default:
                 return new Bush(Constants.SCREEN_WIDTH,((SCREEN_HEIGHT/4)*2) + (Constants.SCREEN_HEIGHT/3) - (Constants.SCREEN_HEIGHT/7));
         }//switch

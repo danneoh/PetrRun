@@ -16,7 +16,7 @@ public class Petr extends Entity{
         super(posX, posY, Constants.SCREEN_WIDTH/9, Constants.SCREEN_HEIGHT/3);
         setInitY(posY);
         setPoints(0);
-        setJumpHeight(posY - getHeight());
+        setJumpHeight(posY - (6 * getHeight()/5));
         setHitBox(posX + (getWidth()/10), posY + (getHeight()/10), posX + (9 * getWidth()/10), posY + (9 * getHeight()/10));
         setIdle(Constants.petrIdle, 2);
         setMove1(Constants.petrWalk, 0.25);
