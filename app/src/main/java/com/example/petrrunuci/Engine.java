@@ -14,6 +14,8 @@ public class Engine extends Thread {
 
     private Random rand;
     private int numObst = 3;
+    private int obstDistance = 60;
+    private int distIt = 0;
 
     /* Constructor */
     public Engine(Context context, World world){
@@ -40,11 +42,11 @@ public class Engine extends Thread {
 
         switch(id){
             case 0:
-                return new BikeRack(Constants.SCREEN_WIDTH + rand.nextInt(placeX),((Constants.SCREEN_HEIGHT/4)*2) + (Constants.SCREEN_HEIGHT/3) - (Constants.SCREEN_HEIGHT/10));
+                return new BikeRack(Constants.SCREEN_WIDTH,((Constants.SCREEN_HEIGHT/4)*2) + (Constants.SCREEN_HEIGHT/3) - (Constants.SCREEN_HEIGHT/10));
             case 1:
-                return new Bush(Constants.SCREEN_WIDTH + rand.nextInt(placeX),((Constants.SCREEN_HEIGHT/4)*2) + (Constants.SCREEN_HEIGHT/3) - (Constants.SCREEN_HEIGHT/7) );
+                return new Bush(Constants.SCREEN_WIDTH,((Constants.SCREEN_HEIGHT/4)*2) + (Constants.SCREEN_HEIGHT/3) - (Constants.SCREEN_HEIGHT/7) );
             case 2:
-                return new Pole(Constants.SCREEN_WIDTH + rand.nextInt(placeX), ((Constants.SCREEN_HEIGHT/4)*2) + (Constants.SCREEN_HEIGHT/3) - (Constants.SCREEN_HEIGHT/5));
+                return new Pole(Constants.SCREEN_WIDTH, ((Constants.SCREEN_HEIGHT/4)*2) + (Constants.SCREEN_HEIGHT/3) - (Constants.SCREEN_HEIGHT/5));
             default:
                 return new Bush(Constants.SCREEN_WIDTH,((SCREEN_HEIGHT/4)*2) + (Constants.SCREEN_HEIGHT/3) - (Constants.SCREEN_HEIGHT/7));
         }//switch
@@ -70,18 +72,28 @@ public class Engine extends Thread {
 
     private void shiftWorld(){
         synchronized (world.getObstacles()){
-            for(int c = 0; c < 10; c++){
+            if(world.getObstacles().isEmpty()){
+                world.getObstacles().add(randObstacle(rand.nextInt(numObst)));
+            }//if
+
+            for(int c = 0; c < world.getObstacles().size(); c++){
                 world.getObstacles().get(c).move(-(runSpeed + world.getObstacles().get(c).getSpeed()), 0);
                 if((world.getObstacles().get(c).getPosX() + world.getObstacles().get(c).getWidth()) <= 0){
                     world.getObstacles().remove(c);
-                    world.getObstacles().add(randObstacle(rand.nextInt(numObst)));
                 }//if
             }//for
+
+            if(distIt >= (obstDistance + rand.nextInt(25) )){
+                world.getObstacles().add(randObstacle(rand.nextInt(numObst)));
+                distIt = 0;
+            }//if
+
+            distIt++;
         }//synchronized
     }// end shiftWorld
 
     public void run(){
-        Initialize();
+        //Initialize();
 
         do {
             try {

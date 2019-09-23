@@ -75,7 +75,7 @@ public class World {
         cam.drawRect(petr.getRect(), p);
         cam.drawRect(petr.getHitBox(), hitColor);
 
-        for(int c = 0; c < 10; c++){
+        for(int c = 0; c < getObstacles().size(); c++){
             if(getObstacles().get(c) != null) {
                 if (getObstacles().get(c) instanceof BikeRack) {
                     cam.drawRect(getObstacles().get(c).getRect(), bikeColor);
