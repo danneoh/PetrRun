@@ -14,7 +14,7 @@ public class Engine extends Thread {
 
     private Random rand;
     private int numObst = 3;
-    private int obstDistance = 60;
+    private int obstDistance = 100;
     private int distIt = 0;
 
     /* Constructor */
@@ -83,7 +83,7 @@ public class Engine extends Thread {
                 }//if
             }//for
 
-            if(distIt >= (obstDistance + rand.nextInt(25) )){
+            if(distIt >= (obstDistance + rand.nextInt(150) )){
                 world.getObstacles().add(randObstacle(rand.nextInt(numObst)));
                 distIt = 0;
             }//if
