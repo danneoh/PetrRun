@@ -26,6 +26,10 @@ public class Constants {
     public static Bitmap[] petrJump = new Bitmap[1];
     public static Bitmap[] petrJumpLeft = new Bitmap[1];
 
+    //Sprites for Pedestrian
+    public static Bitmap pedSprite;
+    public static Bitmap[] pedWalk = new Bitmap[4];
+
 }// Class Constants
 
 /* EOF */

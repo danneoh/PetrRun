@@ -43,9 +43,19 @@ public class World {
         return petr;
     }//getPetr
 
+    public BikeRack getBike(){
+        return br;
+    }
+
+    public Pole getPole(){
+        return pole;
+    }
+
+
     public Vector<Obstacles> getObstacles(){
         return obstacles;
     }//getObstacles
+
 
     public void draw(Canvas cam){
         Paint p = new Paint();
@@ -91,7 +101,7 @@ public class World {
         cam.drawRect(pole.getRect(), poleColor);
         cam.drawRect(bush.getRect(), bushColor);
         cam.drawRect(br.getRect(), bikeColor); /**/
-       // cam.drawBitmap(petrSprite, null, petr.getRect(), new Paint());
+        cam.drawBitmap(Constants.petrSprite, null, petr.getRect(), new Paint());
     }//draw
 
 }//class World

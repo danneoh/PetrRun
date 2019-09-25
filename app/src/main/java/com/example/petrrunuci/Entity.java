@@ -184,7 +184,7 @@ public abstract class Entity { //This class will be used to make Petr
         posX += x;
         posY += y;
 
-        moveRelPos(x);
+        //moveRelPos(x);
 
         getRect().offset(x, y);
         if((getHitBox() != null) && !getHitBox().isEmpty()){

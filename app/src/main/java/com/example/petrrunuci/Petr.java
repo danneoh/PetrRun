@@ -30,9 +30,14 @@ public class Petr extends Entity{
     private void setInitY(int initY){
         this.initY = initY;
     }//setInitY
+
     private void setPoints(int points){
         this.points = points;
     }//setPoints
+
+    public int getPoints(){ return points; }
+
+    public void addPoints(int points){ this.points += points; }
 
     private void setDamage(Bitmap[] sprites, double aniTime){
         damage = new Animation(sprites, aniTime);
@@ -63,6 +68,7 @@ public class Petr extends Entity{
     public void Jumping(boolean jumping){//setter method for jumping
         this.jumping = jumping;
     }//Jumping
+
     public boolean isJumping(){
         return jumping;
     }//isJumping
