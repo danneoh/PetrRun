@@ -14,7 +14,7 @@ public class Engine extends Thread {
 
     private Random rand;
     private int numObst = 3;
-    private int obstDistance = 60;
+    private int obstDistance = 100;
     private int distIt = 0;
     private int points = 0;
 
@@ -76,31 +76,33 @@ public class Engine extends Thread {
         }//synchronized(petr)
     }// end Gravity
 
-    private void shiftWorld(){
-        synchronized (world.getObstacles()){
-            if(world.getObstacles().isEmpty()){
+    private void shiftWorld() {
+        synchronized (world.getObstacles()) {
+            if (world.getObstacles().isEmpty()) {
                 world.getObstacles().add(randObstacle(rand.nextInt(numObst)));
             }//if
 
-            for(int c = 0; c < world.getObstacles().size(); c++){
+            for (int c = 0; c < world.getObstacles().size(); c++) {
                 world.getObstacles().get(c).move(-(runSpeed + world.getObstacles().get(c).getSpeed()), 0);
-                if((world.getObstacles().get(c).getPosX() + world.getObstacles().get(c).getWidth()) <= 0){
+                if ((world.getObstacles().get(c).getPosX() + world.getObstacles().get(c).getWidth()) <= 0) {
                     world.getObstacles().remove(c);
                     world.getPetr().addPoints(1);
                     updateView();
                 }//if
             }//for
 
-            if(distIt >= (obstDistance + rand.nextInt(60) )){
-                world.getObstacles().add(randObstacle(rand.nextInt(numObst)));
+            if (distIt >= (obstDistance + rand.nextInt(60))) {
+                if (distIt >= (obstDistance + rand.nextInt(150))) {
+                    world.getObstacles().add(randObstacle(rand.nextInt(numObst)));
                 /*world.getPetr().addPoints(1);
                 updateView();*/
-                distIt = 0;
-            }//if
+                    distIt = 0;
+                }//if
 
-            distIt++;
-        }//synchronized
-    }// end shiftWorld
+                distIt++;
+            }//synchronized
+        }// end shiftWorld
+    }
 
     public void updateView(){
          //world.getPetr().addPoints(1);
