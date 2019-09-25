@@ -1,6 +1,8 @@
 package com.example.petrrunuci;
 
 import android.content.Context;
+import android.graphics.Rect;
+
 import java.util.Random;
 
 import static com.example.petrrunuci.Constants.SCREEN_HEIGHT;
@@ -87,6 +89,9 @@ public class Engine extends Thread {
                   /*  world.getPetr().addPoints(1);
                     updateView();/**/
                 }//if
+                if(Rect.intersects(world.getPetr().getHitBox(), world.getObstacles().get(c).getRect())){
+                    world.setEndGame(true);
+                }
             }//for
 
             if (distIt >= (obstDistance + rand.nextInt(60))) {
@@ -116,6 +121,7 @@ public class Engine extends Thread {
             try {
                 Gravity();
                 shiftWorld();
+                //collisonCheck();
                 //newScore();
                // updateView();
                 sleep(25);
