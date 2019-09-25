@@ -38,8 +38,6 @@ public class Engine extends Thread {
     }//Initialize
 
     private Obstacles randObstacle(int id){
-        int placeX = 20 * Constants.SCREEN_WIDTH;
-
 
         switch(id){
             case 0:
@@ -55,24 +53,24 @@ public class Engine extends Thread {
 
     private void Gravity(){
         synchronized (world.getPetr()) {
-            if (world.getPetr().isJumping() && false == world.getPetr().isFalling()) {
+            if (world.getPetr().isJumping() && !world.getPetr().isFalling()) {
                 System.out.println("jumping");
                 if (world.getPetr().getPosY() > world.getPetr().getJumpHeight()) {
                     world.getPetr().move(0, -gravity);
                 }
                 else {
-                    world.getPetr().Jumping(false);
                     world.getPetr().setFalling(true);
                 }// if/else
             }//if
-            else {
+            else if(world.getPetr().isJumping() && world.getPetr().isFalling()){
                 if (world.getPetr().getPosY() < world.getPetr().getInitY()) {
                     System.out.println("falling");
                     world.getPetr().move(0, gravity);
-                    world.getPetr().setFalling(true);
-                }//if
-                else{world.getPetr().setFalling(false);}
-            }// if/else
+                }else{
+                    world.getPetr().setFalling(false);
+                    world.getPetr().Jumping(false);
+                }// if/else
+            }// if/elif
         }//synchronized(petr)
     }// end Gravity
 
@@ -86,8 +84,8 @@ public class Engine extends Thread {
                 world.getObstacles().get(c).move(-(runSpeed + world.getObstacles().get(c).getSpeed()), 0);
                 if ((world.getObstacles().get(c).getPosX() + world.getObstacles().get(c).getWidth()) <= 0) {
                     world.getObstacles().remove(c);
-                    world.getPetr().addPoints(1);
-                    updateView();
+                  /*  world.getPetr().addPoints(1);
+                    updateView();/**/
                 }//if
             }//for
 
@@ -100,13 +98,15 @@ public class Engine extends Thread {
                 }//if
 
                 distIt++;
-            }//synchronized
-        }// end shiftWorld
-    }
+            }//if
+        }//synchronized
+        points++;
+       // updateView();
+    }// end shiftWorld
 
     public void updateView(){
          //world.getPetr().addPoints(1);
-         activity.getScoreView().setText("Points: " + Integer.toString(world.getPetr().getPoints()));
+         activity.getScoreView().setText("Points: " + Integer.toString(points/10));
     }
 
     public void run(){
@@ -117,8 +117,9 @@ public class Engine extends Thread {
                 Gravity();
                 shiftWorld();
                 //newScore();
-                //updateView();
+               // updateView();
                 sleep(25);
+                updateView();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }// try/catch
